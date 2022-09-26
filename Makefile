@@ -1,5 +1,5 @@
 postgres:
-		docker run --name postgres14 -p 5432:5432 -e POSTGRES_USER=root -e POSTGRES_PASSWORD=root -d postgres:14-alpine
+		docker run --name postgres14 --network bank-network -p 5432:5432 -e POSTGRES_USER=root -e POSTGRES_PASSWORD=root -d postgres:14-alpine
 
 createdb:
 	  docker exec -it postgres14 createdb --username=root --owner=root simple_bank
@@ -30,5 +30,9 @@ mock:
 
 test:
 	go test -v -cover ./...
+
+proto:
+	rm -f protos/*.go
+	protoc --proto_path=protos --go_out=protos --go_opt=paths=source_relative --go-grpc_out=protos --go-grpc_opt=paths=source_relative protos/*.proto
 	
 .PHONY: postgres createdb dropdb migrateup migrateuplast migratedown migratedownlast sqlc server mock test

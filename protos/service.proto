@@ -1,10 +1,10 @@
 syntax = "proto3";
 
-package protos;
+package pb;
 
 import "google/protobuf/timestamp.proto";
 
-option go_package = "github.com/radugaf/simplebank/protos";
+option go_package = "github.com/radugaf/simplebank/pb";
 
 service SimpleBank {
     rpc CreateUser(CreateUserRequest) returns (CreateUserResponse);

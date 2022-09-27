@@ -9,7 +9,7 @@ import (
 	"github.com/radugaf/simplebank/api"
 	db "github.com/radugaf/simplebank/db/sqlc"
 	"github.com/radugaf/simplebank/grpc_api"
-	"github.com/radugaf/simplebank/protos"
+	"github.com/radugaf/simplebank/pb"
 	"github.com/radugaf/simplebank/tools"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
@@ -49,7 +49,7 @@ func runGrpcServer(config tools.Config, store db.Store) {
 	}
 
 	grpcServer := grpc.NewServer()
-	protos.RegisterSimpleBankServer(grpcServer, server)
+	pb.RegisterSimpleBankServer(grpcServer, server)
 	reflection.Register(grpcServer)
 
 	listener, err := net.Listen("tcp", config.GRPCServerAddress)

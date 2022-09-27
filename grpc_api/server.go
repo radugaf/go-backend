@@ -4,14 +4,14 @@ import (
 	"fmt"
 
 	db "github.com/radugaf/simplebank/db/sqlc"
-	"github.com/radugaf/simplebank/protos"
+	"github.com/radugaf/simplebank/pb"
 	"github.com/radugaf/simplebank/token"
 	"github.com/radugaf/simplebank/tools"
 )
 
 // Server serves gRPC requests for our banking service.
 type Server struct {
-	protos.UnimplementedSimpleBankServer
+	pb.UnimplementedSimpleBankServer
 	store          db.Store
 	tokenGenerator token.Token
 	config         tools.Config

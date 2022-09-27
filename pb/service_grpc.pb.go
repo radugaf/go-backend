@@ -4,7 +4,7 @@
 // - protoc             v3.21.6
 // source: service.proto
 
-package protos
+package pb
 
 import (
 	context "context"
@@ -37,7 +37,7 @@ func NewSimpleBankClient(cc grpc.ClientConnInterface) SimpleBankClient {
 
 func (c *simpleBankClient) CreateUser(ctx context.Context, in *CreateUserRequest, opts ...grpc.CallOption) (*CreateUserResponse, error) {
 	out := new(CreateUserResponse)
-	err := c.cc.Invoke(ctx, "/protos.SimpleBank/CreateUser", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/pb.SimpleBank/CreateUser", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -46,7 +46,7 @@ func (c *simpleBankClient) CreateUser(ctx context.Context, in *CreateUserRequest
 
 func (c *simpleBankClient) UpdateUser(ctx context.Context, in *UpdateUserRequest, opts ...grpc.CallOption) (*UpdateUserResponse, error) {
 	out := new(UpdateUserResponse)
-	err := c.cc.Invoke(ctx, "/protos.SimpleBank/UpdateUser", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/pb.SimpleBank/UpdateUser", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -55,7 +55,7 @@ func (c *simpleBankClient) UpdateUser(ctx context.Context, in *UpdateUserRequest
 
 func (c *simpleBankClient) LoginUser(ctx context.Context, in *LoginUserRequest, opts ...grpc.CallOption) (*LoginUserResponse, error) {
 	out := new(LoginUserResponse)
-	err := c.cc.Invoke(ctx, "/protos.SimpleBank/LoginUser", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/pb.SimpleBank/LoginUser", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -108,7 +108,7 @@ func _SimpleBank_CreateUser_Handler(srv interface{}, ctx context.Context, dec fu
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/protos.SimpleBank/CreateUser",
+		FullMethod: "/pb.SimpleBank/CreateUser",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(SimpleBankServer).CreateUser(ctx, req.(*CreateUserRequest))
@@ -126,7 +126,7 @@ func _SimpleBank_UpdateUser_Handler(srv interface{}, ctx context.Context, dec fu
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/protos.SimpleBank/UpdateUser",
+		FullMethod: "/pb.SimpleBank/UpdateUser",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(SimpleBankServer).UpdateUser(ctx, req.(*UpdateUserRequest))
@@ -144,7 +144,7 @@ func _SimpleBank_LoginUser_Handler(srv interface{}, ctx context.Context, dec fun
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/protos.SimpleBank/LoginUser",
+		FullMethod: "/pb.SimpleBank/LoginUser",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(SimpleBankServer).LoginUser(ctx, req.(*LoginUserRequest))
@@ -156,7 +156,7 @@ func _SimpleBank_LoginUser_Handler(srv interface{}, ctx context.Context, dec fun
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var SimpleBank_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "protos.SimpleBank",
+	ServiceName: "pb.SimpleBank",
 	HandlerType: (*SimpleBankServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
